@@ -1,0 +1,106 @@
+########### 1- installation 
+https://laravel.com/docs/11.x#creating-a-laravel-project
+
+########## 2- Meet laravel architecuture 
+1- Desing patterns 
+https://refactoring.guru/design-patterns
+
+###### 3- starting development server 
+php artisan serve 
+
+
+#### 4- play with routes 
+https://laravel.com/docs/11.x/routing
+
+Don't forget names for your routes 
+
+
+
+--> restrict parameter type
+https://laravel.com/docs/11.x/routing#parameters-regular-expression-constraints
+
+
+##### 5- views in php 
+---> blade template engine 
+https://laravel.com/docs/11.x/blade
+when you give name to your viewsfile --> .blade.php 
+# we implicity perfrom some tasks like the ones you can do with pure php files 
+blade directives 
+https://laravel.com/docs/11.x/blade#blade-directives
+
+
+
+
+####### create default base layout for the application 
+this layout can be extended later in the other different pages
+
+extending layouts
+https://laravel.com/docs/11.x/blade#extending-a-layout
+
+
+
+# serving static images 
+
+
+################################# Using contoller 
+
+You can create php class for your controller ??
+
+
+artisan command line tool ---> provide command --> create controller ??
+php artisan make:controller StudentController 
+
+
+
+
+############################# Lab01
+create pages that allow us to  make CRUD operation on Posts
+
+- All Posts is a link that redirect back to /posts route
+
+- Use blade layout to not duplicate navbar across view files
+
+- make sure to follow the naming convension
+    /posts
+    /posts/{id}  --> show
+    /posts/{id}/edit --> edit 
+    /posts/{id}/ delete --> delete 
+
+- make sure use names for your created routes 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
