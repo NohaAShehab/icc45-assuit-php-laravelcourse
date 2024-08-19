@@ -12,7 +12,7 @@
 
 <table class='table'>
                 <tr> <th>ID</th> <th>Name</th> <th>Email</th> <th>  Image</th>
-                <td> Show </td>
+                <td> Show </td> <td> Edit</td> <td> Delete</td>
         </tr>
 
               @foreach($students as $student)
@@ -22,7 +22,8 @@
                         <td>{{$student->email}}</td>
                           <td> <img src='{{asset("images/students/".$student->image)}}' width="100" height="100"></td>
                         <td><a href="{{route('students.show', $student->id)}}" class='btn btn-info'> Show </a> </td>
-
+                    <td> <a href="{{route("students.edit",$student->id)}}" class="btn btn-warning">Edit</a></td>
+                    <td><a href="{{route('students.destroy', $student->id)}}" class="btn btn-danger">Delete</a></td>
                 </tr>
 
               @endforeach

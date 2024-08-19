@@ -77,5 +77,20 @@ class StudentController extends Controller
         return  to_route("students.index");
     }
 
+    function destroy($id){
+        $student = Student::find($id);
+        if($student == null){
+            abort(404);
+        }
+        $student->delete();
+        return  to_route("students.index");
 
+    }
+
+
+    function edit($id){
+        $student = Student::find($id);
+        return view("students.edit", ["student"=>$student]);
+
+    }
 }

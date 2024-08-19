@@ -125,6 +125,28 @@ https://laravel.com/docs/11.x/queries#main-content
 https://laravel.com/docs/11.x/eloquent#retrieving-single-models
 
 
+#csrf and create new object
+https://laravel.com/docs/11.x/csrf#main-content
+
+# rest of crud on objects
+create / insert
+https://laravel.com/docs/11.x/eloquent#inserts
+
+edit
+
+delete ///
+https://laravel.com/docs/11.x/eloquent#deleting-models
+
+
+
+
+
+
+
+
+
+
+
 
 
 
