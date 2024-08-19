@@ -140,6 +140,14 @@ https://laravel.com/docs/11.x/eloquent#deleting-models
 ***************** uploading files on server
 
 
+*********************** lab02
+= add image to your post --> upload
+1- create migration file for posts table
+2- perform all crud operations on posts
+3- search about carbon date
+    so when you display create at in index
+4- search about pagination ==> make sure that you can only display 3 posts per page
+
 
 
 
