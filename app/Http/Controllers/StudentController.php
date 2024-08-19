@@ -89,7 +89,10 @@ class StudentController extends Controller
 
 
     function edit($id){
-        $student = Student::find($id);
+//        $student = Student::find($id);
+        $student=Student::findorfail($id);
+        # use one function to check if object exists --> continue in the function --> otherwise fail
+
         return view("students.edit", ["student"=>$student]);
 
     }
