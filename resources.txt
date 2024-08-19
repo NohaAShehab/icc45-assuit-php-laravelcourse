@@ -115,7 +115,14 @@ php artisan migrate
 https://laravel.com/docs/11.x/eloquent#generating-model-classes
 
 
+### how to get / post data to the db???
 
+
+## query builder
+https://laravel.com/docs/11.x/queries#main-content
+
+# using models
+https://laravel.com/docs/11.x/eloquent#retrieving-single-models
 
 
 
