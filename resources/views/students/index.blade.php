@@ -8,7 +8,7 @@
 
 @section("main")
     <h1> All students</h1>
-    <a href="" class="btn btn-primary">Add new Student </a>
+    <a href="{{route('students.create')}}" class="btn btn-primary">Add new Student </a>
 
 <table class='table'>
                 <tr> <th>ID</th> <th>Name</th> <th>Email</th> <th>  Image</th>

@@ -1,20 +1,20 @@
 <?php
 
-# defualt entry point for routes in your web application 
+# defualt entry point for routes in your web application
 
 use Illuminate\Support\Facades\Route;
 
-# get represent get method  --> / 
-Route::get('/', 
+# get represent get method  --> /
+Route::get('/',
     function () {
         return view('welcome');
-    }  //  this function represent controller 
+    }  //  this function represent controller
 
 );
 
 
 Route::get('/assuit', function(){
-    return "Hello from assuit"; 
+    return "Hello from assuit";
 });
 
 
@@ -36,7 +36,7 @@ Route::get("/users", function(){
 });
 
 
-# route with varaible mandatory part 
+# route with varaible mandatory part
 
 Route::get("/std/{name}", function($name){
     return "<h1>Welcome student {$name}</h1>";
@@ -59,13 +59,13 @@ Route::get("/users/{id}", function ($id){
         if($user['id']==$id){
             return $user;
         }
-        
+
     }
-    return "<h1 style='color:red'>User not found </h1>"; 
+    return "<h1 style='color:red'>User not found </h1>";
 
 });
 
-# restrict url to a specific pattern 
+# restrict url to a specific pattern
 
 Route::get("/user/{id}", function ($id){
     var_dump($id);
@@ -82,9 +82,9 @@ Route::get("/user/{id}", function ($id){
         if($user['id']==$id){
             return $user;
         }
-        
+
     }
-    return "<h1 style='color:red'>User not found </h1>"; 
+    return "<h1 style='color:red'>User not found </h1>";
 
 })->where('id', '[0-9]+');;
 
@@ -99,7 +99,7 @@ Route::get("/profile/{user?}", function($user='unknown'){
 
 
 
-# I need to return with views 
+# I need to return with views
 Route::get("/home", function(){
     return view('home');
 });
@@ -113,8 +113,8 @@ Route::get("/home/users", function(){
         ["id"=>4, "name"=>"Doaa", "email"=> "Mohamed@gmail.com", "image"=>"pic4.png"],
         ["id"=>5, "name"=>"Arwa", "email"=> "Mohamed@gmail.com", "image"=>"pic5.png"]
     ];
-    
-    # you can send values to the view from the controller function 
+
+    # you can send values to the view from the controller function
     // return view("users", ["users"=>$users]);
     return view("allusers", ["users"=>$users, "name"=> "Noha Shehab"]);
 
@@ -143,12 +143,17 @@ Route::get("/home/users/{id}", function($id){
 
 
 use App\Http\Controllers\StudentController;
-# use index function in Student Controller 
+# use index function in Student Controller
 Route::get("/students",[StudentController::class,"index"] )
-    ->name("students.index"); 
-    
+    ->name("students.index");
+
 Route::get("/students/{id}", [StudentController::class, "show"])
 ->name("students.show")->where('id', '[0-9]+');
+
+Route::get('/students/create',[StudentController::class, 'create'])
+    ->name('students.create');
+Route::post("/students", [StudentController::class, 'store'])
+    ->name('students.store');
 
 
 

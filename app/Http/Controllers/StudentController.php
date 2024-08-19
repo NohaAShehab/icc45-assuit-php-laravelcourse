@@ -55,5 +55,27 @@ class StudentController extends Controller
 
     }
 
+    function create(){
+        return view("students.create");
+    }
+
+    function store(){
+//        dd($_POST); # print object then stop the execution
+        $data = request()->all();
+//        dd($data);
+        #use model to create new object
+        $student = new Student();
+        $student->name =$data['name'];
+        $student->email = $data['email'];
+        $student->grade = $data['grade'];
+        $student->image= $data['image'];
+        $student->gender= $data['gender'];
+        # to save object to the db
+        $student->save();
+//        return 'saved';
+        # return to route --> students.index
+        return  to_route("students.index");
+    }
+
 
 }
