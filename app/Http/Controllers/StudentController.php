@@ -60,15 +60,22 @@ class StudentController extends Controller
     }
 
     function store(){
+        $image_path = '';
 //        dd($_POST); # print object then stop the execution
         $data = request()->all();
 //        dd($data);
+        if(request()->hasFile("image")){
+            #move uploaded file to the storage path I have created
+            $image = request()->file("image");
+            $image_path=$image->store("images", 'students_images');
+
+        }
         #use model to create new object
         $student = new Student();
         $student->name =$data['name'];
         $student->email = $data['email'];
         $student->grade = $data['grade'];
-        $student->image= $data['image'];
+        $student->image= $image_path;
         $student->gender= $data['gender'];
         # to save object to the db
         $student->save();

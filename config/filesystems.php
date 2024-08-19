@@ -55,6 +55,14 @@ return [
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
             'throw' => false,
         ],
+        # define new storage for my files
+        'students_images'=>[
+            'driver' => 'local',
+            'root' => public_path('images/students'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+            'throw' => false,
+        ]
 
     ],
 

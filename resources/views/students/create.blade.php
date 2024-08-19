@@ -3,7 +3,7 @@
 @section('main')
     <h1> Add New Student </h1>
 
-    <form method="post" action="{{route('students.store')}}">
+    <form method="post" action="{{route('students.store')}}" enctype="multipart/form-data">
 
         @csrf
 
@@ -22,7 +22,7 @@
         </div>
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Image</label>
-            <input type="text" class="form-control"  name="image" aria-describedby="emailHelp">
+            <input type="file" class="form-control"  name="image" aria-describedby="emailHelp">
         </div>
         <div>
             <div class="form-check">

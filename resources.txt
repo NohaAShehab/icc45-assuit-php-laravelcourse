@@ -137,6 +137,8 @@ edit
 delete ///
 https://laravel.com/docs/11.x/eloquent#deleting-models
 
+***************** uploading files on server
+
 
 
 
