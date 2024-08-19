@@ -1,18 +1,18 @@
-########### 1- installation 
+########### 1- installation
 https://laravel.com/docs/11.x#creating-a-laravel-project
 
-########## 2- Meet laravel architecuture 
-1- Desing patterns 
+########## 2- Meet laravel architecuture
+1- Desing patterns
 https://refactoring.guru/design-patterns
 
-###### 3- starting development server 
-php artisan serve 
+###### 3- starting development server
+php artisan serve
 
 
-#### 4- play with routes 
+#### 4- play with routes
 https://laravel.com/docs/11.x/routing
 
-Don't forget names for your routes 
+Don't forget names for your routes
 
 
 
@@ -20,18 +20,18 @@ Don't forget names for your routes
 https://laravel.com/docs/11.x/routing#parameters-regular-expression-constraints
 
 
-##### 5- views in php 
----> blade template engine 
+##### 5- views in php
+---> blade template engine
 https://laravel.com/docs/11.x/blade
-when you give name to your viewsfile --> .blade.php 
-# we implicity perfrom some tasks like the ones you can do with pure php files 
-blade directives 
+when you give name to your viewsfile --> .blade.php
+# we implicity perfrom some tasks like the ones you can do with pure php files
+blade directives
 https://laravel.com/docs/11.x/blade#blade-directives
 
 
 
 
-####### create default base layout for the application 
+####### create default base layout for the application
 this layout can be extended later in the other different pages
 
 extending layouts
@@ -39,16 +39,16 @@ https://laravel.com/docs/11.x/blade#extending-a-layout
 
 
 
-# serving static images 
+# serving static images
 
 
-################################# Using contoller 
+################################# Using contoller
 
 You can create php class for your controller ??
 
 
 artisan command line tool ---> provide command --> create controller ??
-php artisan make:controller StudentController 
+php artisan make:controller StudentController
 
 
 
@@ -63,10 +63,56 @@ create pages that allow us to  make CRUD operation on Posts
 - make sure to follow the naming convension
     /posts
     /posts/{id}  --> show
-    /posts/{id}/edit --> edit 
-    /posts/{id}/ delete --> delete 
+    /posts/{id}/edit --> edit
+    /posts/{id}/ delete --> delete
 
-- make sure use names for your created routes 
+- make sure use names for your created routes
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+********************** day02 *********************************
+1- connect our laravel app with db --> db mysql
+
+1- set connection credits
+username : assuit
+password: iti_123456789_
+db_name : laravel_assuit
+host:localhost
+port:3306
+
+2- use php artisan migrate to apply new changes to the db.
+
+----------------------------------------------
+
+students --> use migration files to create table students ??
+    id
+    name
+    email
+    gender
+    grade
+
+-generate migration file
+https://laravel.com/docs/11.x/migration
+
+-column types
+https://laravel.com/docs/11.x/migrations#available-column-types
+
+php artisan migrate
+
+-- generate model class
+https://laravel.com/docs/11.x/eloquent#generating-model-classes
 
 
 
