@@ -216,6 +216,34 @@ create column track_id added to students table --> track reference tracks
 define relation between student and track --> on the level of model ??
 student belongs to one track
 
+https://laravel.com/docs/11.x/eloquent-relationships#one-to-many
+
+######################################################################
+generate 100 student with dummy data --->
+
+using factories
+generate new factory class for student  ???
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

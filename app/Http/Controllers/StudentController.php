@@ -14,7 +14,8 @@ class StudentController extends Controller
     public function index()
     {
         //
-        $students  = Student::all();
+//        $students  = Student::
+        $students = Student::paginate(5);
         return view('students.index', compact('students'));
     }
 
@@ -121,9 +122,9 @@ class StudentController extends Controller
     public function destroy(Student $student)
     {
         //
-        dd($student);
+//        dd($student);
 
         $student->delete();
-        return to_route('students.index');
+        return to_route('students.index')->with('success', 'Student deleted successfully');
     }
 }
