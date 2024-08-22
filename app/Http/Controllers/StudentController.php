@@ -126,5 +126,7 @@ class StudentController extends Controller
 
         $student->delete();
         return to_route('students.index')->with('success', 'Student deleted successfully');
+
+
     }
 }

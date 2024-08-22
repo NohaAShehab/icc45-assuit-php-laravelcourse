@@ -259,9 +259,55 @@ generate new factory class for student  ???
 
 
 
-#######################################
+###################### Lab03 #################
+1- connect model of user with model of the post
+    --> post has only one post creator
+ - In Edit Or Create Post Creator Field must be drop down list of users
+-when I create new post --> I will choose the post creator from drop down
+
 --> modify PostController to be resource controller
 --> apply this validation on post
+- Title & description are required , minimum length for title is 3
+chars and unique, for description the minimum length is 10
+chars ,make sure when updating post without changing Title
+it still works
+Also make sure that no one hacks you and send an id of post
+creator that doesn’t exist in the database
+
+- Make sure to display error messages of failed validation
+https://laravel.com/docs/master/validation#quick-displayin
+g-the-validation-errors
+
+
+------------------------------------------
+- When i Click on Delete you must show a warning before deleting and i choose
+between yes to confirm Delete or no
+
+- In Index & Show page ,make sure the Created At is formated , so read carbon
+documentation https://carbon.nesbot.com/docs/
+
+
+- Create PostSeeder & PostFactory class so that when i run php artisan db:seed it
+seeds posts table with 500 records
+
+---------------- soft delete
+
+Add restore button on index page to restore deleted posts you will
+need to use soft delete
+https://laravel.com/docs/master/eloquent#soft-deleting
+
+-----------------
+- create Accessor Method inside Post Model that returns human readable carbon to
+be used in posts/{id} , for example i want $post->human_readable_date will result in
+the formated carbon date that is rendered in show post page
+https://laravel.com/docs/master/eloquent-mutators#defining-an-accessor
+
+
+-------
+
+- Add comments to post using polymorphic relation and also we need to show who
+commented on post
+https://laravel.com/docs/master/eloquent-relationships#polymorphic-relationships
 
 
 

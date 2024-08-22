@@ -15,6 +15,7 @@
 {{--        @dump($student->track)--}}
         <p class="card-text">Created_at: {{$student->created_at}}</p>
         <p class="card-text">Updated_at: {{$student->updated_at}}</p>
+        {{$student->human_readable_date}}
 
         <a href="{{route('students.index')}}" class="btn btn-primary">Back to students</a>
     </div>
