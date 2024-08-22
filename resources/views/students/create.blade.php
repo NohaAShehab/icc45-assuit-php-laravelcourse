@@ -2,6 +2,15 @@
 
 @section('main')
     <h1> Add New Student </h1>
+{{--    @if ($errors->any())--}}
+{{--        <div class="alert alert-danger">--}}
+{{--            <ul>--}}
+{{--                @foreach ($errors->all() as $error)--}}
+{{--                    <li>{{ $error }}</li>--}}
+{{--                @endforeach--}}
+{{--            </ul>--}}
+{{--        </div>--}}
+{{--    @endif--}}
 
     <form method="post" action="{{route('students.store')}}" enctype="multipart/form-data">
 
@@ -9,20 +18,38 @@
 
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Name</label>
-            <input type="text" class="form-control" name="name" aria-describedby="emailHelp">
+            <input type="text" class="form-control"
+                   value="{{old('name')}}"
+                   name="name" aria-describedby="emailHelp">
+
+            @error('name')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
         </div>
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Email address</label>
-            <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <input type="email"  value="{{old('email')}}"
+                   class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp">
             <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            @error('email')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
         </div>
         <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Grade</label>
-            <input type="number" class="form-control"  name="grade" id="exampleInputPassword1">
+            <input type="number" class="form-control"
+                   value="{{old('grade')}}"
+                   name="grade" id="exampleInputPassword1">
+            @error('grade')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
         </div>
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Image</label>
             <input type="file" class="form-control"  name="image" aria-describedby="emailHelp">
+            @error('image')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
         </div>
         <div>
             <div class="form-check">
@@ -37,7 +64,9 @@
                    Female
                 </label>
             </div>
-
+            @error('gender')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
         </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>

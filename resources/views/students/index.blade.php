@@ -23,7 +23,15 @@
                           <td> <img src='{{asset("images/students/".$student->image)}}' width="100" height="100"></td>
                         <td><a href="{{route('students.show', $student->id)}}" class='btn btn-info'> Show </a> </td>
                     <td> <a href="{{route("students.edit",$student->id)}}" class="btn btn-warning">Edit</a></td>
-                    <td><a href="{{route('students.destroy', $student->id)}}" class="btn btn-danger">Delete</a></td>
+{{--                    <td><a href="{{route('students.destroy', $student->id)}}" class="btn btn-danger">Delete</a></td>--}}
+                    <td>
+                        <form action="{{route('students.destroy', $student)}}"  method="post">
+                            @csrf
+                            @method('delete')
+                            <input type="submit" class="btn btn-danger" value="Delete">
+                        </form>
+
+                    </td>
                 </tr>
 
               @endforeach

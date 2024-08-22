@@ -2,11 +2,20 @@
 
 @section('main')
     <h1> Edit Student </h1>
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
-    <form method="post" action="">
+    <form method="post" action="{{route("students.update", $student)}}">
 
         @csrf
-
+        @method('put')
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Name</label>
             <input type="text" class="form-control" value="{{$student->name}}" name="name" aria-describedby="emailHelp">
@@ -25,7 +34,7 @@
         </div>
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Image</label>
-            <input type="text" class="form-control"  value="{{$student->image}}" name="image" aria-describedby="emailHelp">
+            <input type="file" class="form-control"   name="image" aria-describedby="emailHelp">
         </div>
         <div>
             @if($student->gender==='male')

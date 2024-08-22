@@ -1,106 +1,126 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Models\Student;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class StudentController extends Controller
 {
-    //  define controller functions I need
-    private  $students = [
-        ["id"=>1, "name"=>"Mohamed", "email"=> "Mohamed@gmail.com", "image"=>"pic1.png"],
-        ["id"=>2, "name"=>"Ibrahim", "email"=> "ibrahim@gmail.com", "image"=>"pic2.png"]
-        , ["id"=>3, "name"=>"Mona", "email"=> "mona@gmail.com", "image"=>"pic3.png"],
-        ["id"=>4, "name"=>"Doaa", "email"=> "Mohamed@gmail.com", "image"=>"pic4.png"],
-        ["id"=>5, "name"=>"Arwa", "email"=> "Mohamed@gmail.com", "image"=>"pic5.png"]
-    ];
-
-    function  index (){
-
-
-//        return view("students.index", ["students"=>$this->students]);
-        # get data from db
-        #1- use query builder
-//        $students = DB::table("students")->get();
-//        dump($students);
-//        return $students;
-        // use orm --> model
-        $students = Student::all(); # select * from students;
-        # return with model objects
-//        dd($students); # print variable and stop execution
-        return view("students.index", ["students"=>$students]);
-
-
-    }
-
-    function show($id)
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
     {
-//        foreach($this->students as $student){
-//            if ($student['id']==$id){
-//                return view("students.show", ["student"=>$student]);
-//            }
-//        }
-//
-//        return view('notfound');
-        # get one object
-        # select * from students where id=id;
-        $student = Student::find($id);
-        if($student == null){
-             abort(404);
-        }
-        return view("students.show", ["student"=>$student]);
-
-
+        //
+        $students  = Student::all();
+        return view('students.index', compact('students'));
     }
 
-    function create(){
-        return view("students.create");
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+        return view('students.create');
     }
 
-    function store(){
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+
+        #customize error message
+        $validated = $request->validate([
+            "name" => "required",
+            "email" => "required|unique:students",
+            "grade" => "required",
+            "image" => "required|image|mimes:jpeg,png,jpg|max:2048"
+        ],[
+            "name.required" => "There is no student without name",
+            "email.required" => "There is no student without email",
+            "email.unique" => "There is already a student with this email",
+            "grade.required" => "There is no student without grade",
+            "image.required" => "There is no student without image",
+
+        ]);
+        #laravel share validation errors via sessions
+        #laravel automatically start session between their pages
+
+        //
+//        dd($request);
         $image_path = '';
-//        dd($_POST); # print object then stop the execution
         $data = request()->all();
-//        dd($data);
         if(request()->hasFile("image")){
-            #move uploaded file to the storage path I have created
             $image = request()->file("image");
             $image_path=$image->store("images", 'students_images');
 
         }
-        #use model to create new object
-        $student = new Student();
-        $student->name =$data['name'];
-        $student->email = $data['email'];
-        $student->grade = $data['grade'];
-        $student->image= $image_path;
-        $student->gender= $data['gender'];
-        # to save object to the db
-        $student->save();
-//        return 'saved';
-        # return to route --> students.index
-        return  to_route("students.index");
+        $data['image'] = $image_path;
+//        dd($data);
+        $student = Student::create($data); # accept data as associative array
+        return to_route('students.show', $student);
     }
 
-    function destroy($id){
-        $student = Student::find($id);
-        if($student == null){
-            abort(404);
+    /**
+     * Display the specified resource.
+     */
+    public function show(Student $student)
+    {
+        //
+        return view('students.show', compact('student'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Student $student)
+    {
+        //
+        return view('students.edit', compact('student'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, Student $student)
+    {
+        //
+        $validated = $request->validate([
+            "name" => "required",
+            "grade" => "required",
+            "email"=>["required", Rule::unique("students")->ignore($student)],
+//            "image" => "required|image|mimes:jpeg,png,jpg|max:2048"
+        ],[
+            "name.required" => "There is no student without name",
+            "email.required" => "There is no student without email",
+//            "email.unique" => "There is already a student with this email",
+            "grade.required" => "There is no student without grade",
+
+        ]);
+        $image_path = $student->image;
+        $data = request()->all();
+        if(request()->hasFile("image")){
+            $image = request()->file("image");
+            $image_path=$image->store("images", 'students_images');
+
         }
-        $student->delete();
-        return  to_route("students.index");
-
+        $data['image'] = $image_path;
+        $student->update($data);
+        return to_route('students.show', $student);
     }
 
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Student $student)
+    {
+        //
+        dd($student);
 
-    function edit($id){
-//        $student = Student::find($id);
-        $student=Student::findorfail($id);
-        # use one function to check if object exists --> continue in the function --> otherwise fail
-
-        return view("students.edit", ["student"=>$student]);
-
+        $student->delete();
+        return to_route('students.index');
     }
 }

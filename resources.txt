@@ -157,9 +157,49 @@ https://laravel.com/docs/11.x/eloquent#deleting-models
 
 
 
+****************************************
+# use resource controller ??
+generate basic function we need to better and speed up dealing with resource
+php artisan make:controller StudentController -r
+
+php artisan make:controller StudentController --model=Student
+ this generated new resource controller and connected it with the model
+
+ You can generate routes automatically ??
+ Route::resource("students", StudentContoller::class);
+
+
+ request methods     url                                                                  name of url         function used by controller
+
+  GET|HEAD        students ................................................................ students.index › StudentController@index
+   POST            students .............................................................. students.store › StudentController@store
+   GET|HEAD        students/create ....................................................... students.create › StudentController@create
+   GET|HEAD        students/{student}............................................................ students.show › StudentController@show
+   PUT|PATCH       students/{student} ................................................... students.update › StudentController@update
+   DELETE          students/{student} .................................................. students.destroy › StudentController@destroy
+   GET|HEAD        students/{student}/edit .............    .......................... students.edit › StudentController@edit
+
+
+rest methods
+    --> adding new object post
+    --> show object/ all object get
+    --> update object --> put
+    --> delete object ===> delete
 
 
 
+browsers know only GET, POST
+
+when you are sending data to the model using create function --> you sending mass of data
+mass assignment  ---? You must specify the keys you need to pass to the object
+
+
+# validate forms ???
+how to use validation
+https://laravel.com/docs/11.x/validation#quick-writing-the-validation-logic
+
+validation rules
+https://laravel.com/docs/11.x/validation#available-validation-rules
 
 
 
