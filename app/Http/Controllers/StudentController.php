@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Student;
+use App\Models\Track;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -23,7 +24,8 @@ class StudentController extends Controller
     public function create()
     {
         //
-        return view('students.create');
+        $tracks = Track::all();
+        return view('students.create', compact('tracks'));
     }
 
     /**
@@ -79,7 +81,8 @@ class StudentController extends Controller
     public function edit(Student $student)
     {
         //
-        return view('students.edit', compact('student'));
+        $tracks = Track::all();
+        return view('students.edit', compact('student', 'tracks'));
     }
 
     /**

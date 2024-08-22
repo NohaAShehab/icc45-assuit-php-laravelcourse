@@ -35,6 +35,7 @@
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Image</label>
             <input type="file" class="form-control"   name="image" aria-describedby="emailHelp">
+            <img src="{{asset('images/students/'.$student->image)}}">
         </div>
         <div>
             @if($student->gender==='male')
@@ -85,6 +86,22 @@
             @endif
         </div>
 
+
+
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Tracks</label>
+            <select class="form-select" name="track_id" aria-label="Default select example">
+                @foreach($tracks as $track)
+                    @if($track->id=== $student->track_id)
+                        <option value="{{$track->id}}" selected>{{$track->name}}</option>
+                    @else
+                    <option value="{{$track->id}}">{{$track->name}}</option>
+                    @endif
+                @endforeach
+
+            </select>
+
+        </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 

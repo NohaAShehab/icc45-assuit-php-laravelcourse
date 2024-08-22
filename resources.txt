@@ -203,6 +203,41 @@ https://laravel.com/docs/11.x/validation#available-validation-rules
 
 
 
+############## connect student with track -=->
+implement relation one to many
+one track has many students
+one student studies only in on track
+ php artisan make:model Track -r -m
+#### level db ?? using migration files
+create column track_id added to students table --> track reference tracks
+
+
+
+define relation between student and track --> on the level of model ??
+student belongs to one track
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#######################################
+--> modify PostController to be resource controller
+--> apply this validation on post
+
+
+
+
 
 
 

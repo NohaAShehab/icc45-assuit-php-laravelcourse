@@ -51,7 +51,8 @@
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
-        <div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Gender</label>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="gender"  value="male" id="flexRadioDefault1">
                 <label class="form-check-label" for="flexRadioDefault1">
@@ -67,6 +68,17 @@
             @error('gender')
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Tracks</label>
+            <select class="form-select" name="track_id" aria-label="Default select example">
+                <option selected disabled value="null">Open this select menu</option>
+                @foreach($tracks as $track)
+                    <option value="{{$track->id}}">{{$track->name}}</option>
+                @endforeach
+
+            </select>
+
         </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>
