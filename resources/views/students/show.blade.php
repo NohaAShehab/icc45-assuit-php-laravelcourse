@@ -12,7 +12,8 @@
         <p class="card-text">Email: {{$student->email}}</p>
             {{$student->track_id }}
         <p class="card-text">Track: {{$student->track ? $student->track->name : "No track added yet"}}</p>
-{{--        @dump($student->track)--}}
+        <p class="card-text">Student Created by : {{$student->creator ? $student->creator->name : "No creator info "}}</p>
+
         <p class="card-text">Created_at: {{$student->created_at}}</p>
         <p class="card-text">Updated_at: {{$student->updated_at}}</p>
         {{$student->human_readable_date}}
@@ -33,4 +34,5 @@
         @endforeach
     @endif
 </div>
+
 @endsection

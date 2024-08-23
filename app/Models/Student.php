@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 class Student extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', "image", "gender", "grade", "email", "track_id"];
+    protected $fillable = ['name', "image", "gender", "grade", "email", "track_id",'creator_id'];
 
     //select * from track t , students s where t.id=s.track_id;
     function track(){
@@ -21,6 +21,9 @@ class Student extends Model
     }
     # select * from track t , students s where t.id=s.track_id;
 
+    function creator(){
+        return $this->belongsTo(User::class); # you must specify tablename and colname
+    }
 
 //    protected function human_readable_date(): Attribute
 //    {

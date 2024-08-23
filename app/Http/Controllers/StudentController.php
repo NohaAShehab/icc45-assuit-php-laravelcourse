@@ -6,10 +6,15 @@ use App\Models\Track;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
 class StudentController extends Controller
 {
+
+    function __construct(){
+        $this->middleware("auth")->only('store');
+    }
     /**
      * Display a listing of the resource.
      */
@@ -35,8 +40,16 @@ class StudentController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(StoreStudentRequest $request)
+//    public function store(Request $request)
+
     {
 
+//        dump($_POST);
+//        dump($request->all());
+//        dd(",,");
+//        dd(Auth::user());
+
+//        dd(Auth::id());
         #laravel share validation errors via sessions
         #laravel automatically start session between their pages
         $image_path = '';
@@ -50,6 +63,7 @@ class StudentController extends Controller
 
         }
         $data['image'] = $image_path;
+        $data['creator_id']= Auth::id();
         $student = Student::create($data); # accept data as associative array
         return to_route('students.show', $student);
     }

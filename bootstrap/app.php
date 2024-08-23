@@ -12,6 +12,10 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         //
+        # manage middlewares >>>
+//         $middleware->validateCsrfTokens(except: [
+//             '/students' // <-- exclude this route
+//         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

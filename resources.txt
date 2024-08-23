@@ -343,7 +343,20 @@ effect of installing laravel/ui package ???
       POST            register .................................... Auth\RegisterController@register
 
 
+# the idea of having users// register operations
 
+    ---> Security principles --> Authentication ??
+        --> username, password ??
+
+        --> limit some actions to be associated with the authenticated users only
+    --> limit adding new students to the authenticated users ???
+        --> using middleware
+
+
+# we have middleware auth --> I can use it
+-->
+
+# add creator_property to the student ??? ---. user who create the student
 
 
 
