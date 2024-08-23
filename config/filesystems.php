@@ -69,6 +69,13 @@ return [
             "url" => env('APP_URL').'/storage',
             'visibility' => 'public',
             'throw' => false,
+        ],
+        "tracks"=>[
+            "driver" => "local",
+            "root" => storage_path('app/tracks'),
+            "url" => env('APP_URL').'/storage',
+            'visibility' => 'public',
+            'throw' => false,
         ]
 
 
