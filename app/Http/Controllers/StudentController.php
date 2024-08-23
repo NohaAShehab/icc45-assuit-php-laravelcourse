@@ -41,6 +41,9 @@ class StudentController extends Controller
         #laravel automatically start session between their pages
         $image_path = '';
         $data = request()->all();
+
+        ### create new validation rule
+
         if(request()->hasFile("image")){
             $image = request()->file("image");
             $image_path=$image->store("images", 'students_images');

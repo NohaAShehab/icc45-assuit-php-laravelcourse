@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Requests;
+use App\Rules\StudentValidName;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -23,7 +24,7 @@ class StoreStudentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "name" => "required",
+            "name" => ["required", new StudentValidName()],
             "email" => "required|unique:students",
             "grade" => "required",
             "image" => "required|image|mimes:jpeg,png,jpg|max:2048"
