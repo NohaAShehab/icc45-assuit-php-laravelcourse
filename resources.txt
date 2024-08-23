@@ -316,6 +316,24 @@ split operations applied on request from controller ?
 --> laravel provides request classes?
     >>> seperate logic of request on it ??
 
+https://laravel.com/docs/11.x/validation#creating-form-requests
+
+--> creating rules
+
+https://laravel.com/docs/11.x/validation#custom-validation-rules
+
+
+############## create login and register pages
+install packages --> login , register ?
+
+
+
+
+
+
+
+
+
 
 
 
