@@ -42,7 +42,6 @@ class TrackController extends Controller
         if($request->hasfile('image')){
             $image = $request->file('image');
             $image_path = $image->store('images', 'tracks_images');
-//            $image_path = $image->store('image', 'tracks');
         }
         $request_data = $request->all();
         $request_data['image'] = $image_path;

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\Models\Student;
 use App\Models\Track;
+use App\Http\Requests\StoreStudentRequest;
+use App\Http\Requests\UpdateStudentRequest;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -32,28 +34,11 @@ class StudentController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreStudentRequest $request)
     {
 
-        #customize error message
-        $validated = $request->validate([
-            "name" => "required",
-            "email" => "required|unique:students",
-            "grade" => "required",
-            "image" => "required|image|mimes:jpeg,png,jpg|max:2048"
-        ],[
-            "name.required" => "There is no student without name",
-            "email.required" => "There is no student without email",
-            "email.unique" => "There is already a student with this email",
-            "grade.required" => "There is no student without grade",
-            "image.required" => "There is no student without image",
-
-        ]);
         #laravel share validation errors via sessions
         #laravel automatically start session between their pages
-
-        //
-//        dd($request);
         $image_path = '';
         $data = request()->all();
         if(request()->hasFile("image")){
@@ -62,7 +47,6 @@ class StudentController extends Controller
 
         }
         $data['image'] = $image_path;
-//        dd($data);
         $student = Student::create($data); # accept data as associative array
         return to_route('students.show', $student);
     }
@@ -89,21 +73,9 @@ class StudentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Student $student)
+    public function update(UpdateStudentRequest $request, Student $student)
     {
-        //
-        $validated = $request->validate([
-            "name" => "required",
-            "grade" => "required",
-            "email"=>["required", Rule::unique("students")->ignore($student)],
-//            "image" => "required|image|mimes:jpeg,png,jpg|max:2048"
-        ],[
-            "name.required" => "There is no student without name",
-            "email.required" => "There is no student without email",
-//            "email.unique" => "There is already a student with this email",
-            "grade.required" => "There is no student without grade",
 
-        ]);
         $image_path = $student->image;
         $data = request()->all();
         if(request()->hasFile("image")){

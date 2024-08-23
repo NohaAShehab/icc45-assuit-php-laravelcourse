@@ -35,7 +35,7 @@
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Image</label>
             <input type="file" class="form-control"   name="image" aria-describedby="emailHelp">
-            <img src="{{asset('images/students/'.$student->image)}}">
+            <img src="{{asset('images/students/'.$student->image)}}" width="100" height="100">
         </div>
         <div>
             @if($student->gender==='male')
