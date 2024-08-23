@@ -325,6 +325,8 @@ https://laravel.com/docs/11.x/validation#custom-validation-rules
 
 ############## create login and register pages
 install packages --> login , register ?
+how to install
+https://github.com/laravel/ui
 
 effect of installing laravel/ui package ???
 1- changes in web.php --> new routes
@@ -359,7 +361,31 @@ effect of installing laravel/ui package ???
 # add creator_property to the student ??? ---. user who create the student
 
 
+####################################### lab04
+3- create rule that checks that post title doesn't contain post key word
+---post----
 
+1- modify requests in your PostController use StorePostRequest, UpdatePostRequest
+
+2-Make our post have slug , using this package ( the slug will be
+generated from the post title , users aren’t allowed to fill slug
+or send it in the request , search for $request->validated()or
+$request->only()
+(Read the package documentation carefully )
+https://github.com/cviebrock/eloquent-sluggable
+TitleExample         SlugExample
+Hello Laravel iti     hello-laravel-iti
+
+3- Show the slug column In Index page
+
+
+4- Use php artisan ui:auth , to scaffold the auth page
+5- Modify on the current navbar , and make it use the laravel
+default auth navbar , and also we need the link to All Posts
+(Do whatever you see suits the case)
+6- make sure that only authenticated users can create posts
+7- change post_creator in your app to be from the logged_in user
+8- create Rule that allows logged in user to create only 3 posts at most--->
 
 
 
