@@ -31,12 +31,23 @@ class TrackController extends Controller
      */
     public function store(Request $request)
     {
+
+
         //
         $request->validate([
             'name' => 'required|unique:tracks',
+            "image"=>'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-        $track = Track::create($request->all());
-        return $track;
+        $image_path=null;
+        if($request->hasfile('image')){
+            $image = $request->file('image');
+            $image_path = $image->store('images', 'tracks_images');
+        }
+        $request_data = $request->all();
+        $request_data['image'] = $image_path;
+
+        $track = Track::create($request_data);
+        return to_route('tracks.index')->with('success', 'Track created successfully');
     }
 
     /**
@@ -45,6 +56,7 @@ class TrackController extends Controller
     public function show(Track $track)
     {
         //
+        return view("tracks.show", compact("track"));
     }
 
     /**

@@ -16,6 +16,15 @@
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
+
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Image</label>
+            <input type="file" class="form-control"
+                   name="image" aria-describedby="emailHelp">
+            @error('image')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+        </div>
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Description</label>
             <input type="text"  value="{{old('description')}}"

@@ -7,7 +7,13 @@
 
 
 @section("main")
+
     <h1> All tracks</h1>
+    @if(session('success'))
+
+        <div class="alert alert-success">{{ session("success") }}</div>
+
+    @endif
     <a href="{{route('tracks.create')}}" class="btn btn-primary">Add new track </a>
 
 <table class='table'>

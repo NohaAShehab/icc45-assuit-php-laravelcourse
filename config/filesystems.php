@@ -62,7 +62,15 @@ return [
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
             'throw' => false,
+        ],
+        "tracks_images"=>[
+            "driver" => "local",
+            "root" => public_path('images/tracks'),  # asset()
+            "url" => env('APP_URL').'/storage',
+            'visibility' => 'public',
+            'throw' => false,
         ]
+
 
     ],
 
