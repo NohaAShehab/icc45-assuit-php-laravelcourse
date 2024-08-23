@@ -13,8 +13,11 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    {{ __('You are logged in!') }}
+{{--                    @dump(Auth::user())--}}
+                        @if(Auth::user()->image)
+                            <img src="{{asset("images/users/".Auth::user()->image)}}" width="300" height="300">
+                        @endif
+                   <p> {{ __('You are logged in!') }} </p>
                 </div>
             </div>
         </div>

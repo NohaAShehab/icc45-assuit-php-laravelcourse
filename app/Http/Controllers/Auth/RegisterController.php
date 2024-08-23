@@ -21,7 +21,12 @@ class RegisterController extends Controller
     |
     */
 
-    use RegistersUsers;
+    use RegistersUsers;  # this is a trait
+
+    function showRegistrationForm()
+    {
+        return view('auth.myregister');
+    }
 
     /**
      * Where to redirect users after registration.
@@ -51,7 +56,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:3', 'confirmed'],
         ]);
     }
 
@@ -63,10 +68,27 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+        $image_path= null;
+        # check if image in array ?
+        if(isset($data['image'])){
+//            dd("image found");
+
+            $image = $data['image'];
+            $image_path = $image->store('images', 'users_images');
+        }
+
+        # upload image ??
+
+//        dd($data);
+        $data['image']=$image_path;
+
+        $user = User::create($data);
+        return $user;
+//        return User::create([
+//            'name' => $data['name'],
+//            'email' => $data['email'],
+//            'password' => Hash::make($data['password']),
+//
+//        ]);
     }
 }

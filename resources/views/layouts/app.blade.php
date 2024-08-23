@@ -53,6 +53,7 @@
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
+                                <img src="{{asset("images/users/".Auth::user()->image)}}" class="rounded-circle" width="50" height="50">
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
@@ -71,10 +72,13 @@
                 </div>
             </div>
         </nav>
-
+        <main class="container">
+            @yield("main")
+        </main>
         <main class="py-4">
             @yield('content')
         </main>
+
     </div>
 </body>
 </html>

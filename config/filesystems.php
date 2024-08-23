@@ -76,6 +76,13 @@ return [
             "url" => env('APP_URL').'/storage',
             'visibility' => 'public',
             'throw' => false,
+        ],
+        "users_images"=>[
+            "driver" => "local",
+            "root" => public_path('images/users'),
+            "url" => env('APP_URL').'/storage',
+            "visibility" => "public",
+            'throw' => false,
         ]
 
 
