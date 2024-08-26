@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\StoreStudentRequest;
 use Illuminate\Validation\Rule;
@@ -13,6 +14,11 @@ use App\Http\Resources\StudentResource;
 
 class StudentController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware("auth:sanctum")->only("store");
+    }
+
 
     /**
      * Display a listing of the resource.
@@ -57,6 +63,7 @@ class StudentController extends Controller
         }
         $request_data = $request->all();
         $request_data['image'] = $image_path;
+        $request_data['creator_id'] = Auth::id();
         //
 //        return $request;
         $student = Student::create($request_data);

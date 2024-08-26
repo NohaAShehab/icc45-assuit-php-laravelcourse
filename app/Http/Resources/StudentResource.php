@@ -25,7 +25,8 @@ class StudentResource extends JsonResource
 //            "track_info"=>[
 //                "id"=>$this->track_id,
 //                "name"=>$this->track ? $this->track->name : null,]
-            "track"=>new TrackResource($this->track)
+            "track"=>new TrackResource($this->track),
+            "creator"=>new CreatorResource($this->creator)
         ];
     }
 }

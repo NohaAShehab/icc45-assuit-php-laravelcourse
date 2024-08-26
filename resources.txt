@@ -463,6 +463,21 @@ https://laravel.com/docs/11.x/eloquent-resources#main-content
 php artisan make:resource StudentResource
 
 # create new resource class for track ?
+#####################3 Authenticate APIs
+laravel --> authentication apis
+    --> php artisan install:api
+        --> api.php
+        --> authenticate package --> sanctum package
+
+
+        in controller add this
+         function __construct()
+            {
+                $this->middleware("auth:sanctum")->only("store");
+            }
+
+===> I need to allow login from api ???
+https://laravel.com/docs/11.x/sanctum#api-token-authentication
 
 
 
