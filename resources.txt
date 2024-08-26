@@ -290,7 +290,7 @@ documentation https://carbon.nesbot.com/docs/
 - Create PostSeeder & PostFactory class so that when i run php artisan db:seed it
 seeds posts table with 500 records
 
----------------- soft delete
+---------------- soft delete -----------------------------------------
 
 Add restore button on index page to restore deleted posts you will
 need to use soft delete
@@ -387,8 +387,13 @@ default auth navbar , and also we need the link to All Posts
 7- change post_creator in your app to be from the logged_in user
 8- create Rule that allows logged in user to create only 3 posts at most--->
 
+#############################################################################################
+Authentication --> system --> uses --> username and passowrd -->
 
-
+#################### Authorization
+https://laravel.com/docs/11.x/authorization#main-content
+the user is authorized to edit/ delete
+00> limit only student creator --> can edit / delete ??
 
 
 

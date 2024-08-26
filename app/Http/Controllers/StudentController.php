@@ -44,12 +44,6 @@ class StudentController extends Controller
 
     {
 
-//        dump($_POST);
-//        dump($request->all());
-//        dd(",,");
-//        dd(Auth::user());
-
-//        dd(Auth::id());
         #laravel share validation errors via sessions
         #laravel automatically start session between their pages
         $image_path = '';
@@ -92,17 +86,20 @@ class StudentController extends Controller
      */
     public function update(UpdateStudentRequest $request, Student $student)
     {
+        if($student->creator_id == Auth::id()) {
 
-        $image_path = $student->image;
-        $data = request()->all();
-        if(request()->hasFile("image")){
-            $image = request()->file("image");
-            $image_path=$image->store("images", 'students_images');
+            $image_path = $student->image;
+            $data = request()->all();
+            if (request()->hasFile("image")) {
+                $image = request()->file("image");
+                $image_path = $image->store("images", 'students_images');
 
+            }
+            $data['image'] = $image_path;
+            $student->update($data);
+            return to_route('students.show', $student);
         }
-        $data['image'] = $image_path;
-        $student->update($data);
-        return to_route('students.show', $student);
+        return to_route('students.index')->with('error', 'You cannot edit this student, you are not the owner');
     }
 
     /**

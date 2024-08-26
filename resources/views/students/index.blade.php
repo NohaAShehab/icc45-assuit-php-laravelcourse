@@ -12,6 +12,11 @@
         <div class="alert alert-success">{{ session("success") }}</div>
 
     @endif
+    @if(session('error'))
+
+        <div class="alert alert-danger">{{ session("error") }}</div>
+
+    @endif
 
     <h1> All students</h1>
     <a href="{{route('students.create')}}" class="btn btn-primary">Add new Student </a>
