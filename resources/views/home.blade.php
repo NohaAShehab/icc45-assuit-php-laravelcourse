@@ -15,6 +15,7 @@
                     @endif
 {{--                    @dump(Auth::user())--}}
                         @if(Auth::user()->image)
+                            <img src="{{Auth::user()->image}}">
                             <img src="{{asset("images/users/".Auth::user()->image)}}" width="300" height="300">
                         @endif
                    <p> {{ __('You are logged in!') }} </p>

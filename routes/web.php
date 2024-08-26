@@ -3,6 +3,8 @@
 # defualt entry point for routes in your web application
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+
 
 # get represent get method  --> /
 Route::get('/',
@@ -192,3 +194,58 @@ Route::resource('tracks', TrackController::class);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+######## login with github
+use Laravel\Socialite\Facades\Socialite;
+use App\Models\User;
+
+Route::get('/auth/redirect', function () {
+    return Socialite::driver('github')->redirect();
+})->name("login.github");
+
+Route::get('/auth/callback', function () {
+//    return "here";
+    # get info about current github user
+//    $user = Socialite::driver('github')->user();
+//    return response()->json(
+//        ["user"=>$user]
+//    );
+//    $githubUser = Socialite::driver('github')->stateless()->user();
+    $githubUser = Socialite::driver('github')->user();
+//    return response()->json(
+//        ["user"=>$githubUser->refreshToken]
+//    );
+
+    $user = User::updateOrCreate([
+        'github_id' => $githubUser->id,
+    ], [
+        'name' => $githubUser->name,
+        'email' => $githubUser->email,
+        'github_token' => $githubUser->token,
+        'password'=>$githubUser->token,
+        'github_refresh_token' => $githubUser->refreshToken,
+        'image'=>$githubUser->getAvatar(),
+    ]);
+
+    Auth::login($user);
+
+    return redirect('/home');
+
+    ## use userdata to create user if not exists ??==> login if exists
+
+    // $user->token
+});
+
+
+# we need to create migration file ?
+//'github_token', 'github_refresh_token' , github_id
+
+
+
+
+
+
+
+
+
+

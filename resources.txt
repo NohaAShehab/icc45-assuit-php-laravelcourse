@@ -479,6 +479,13 @@ laravel --> authentication apis
 ===> I need to allow login from api ???
 https://laravel.com/docs/11.x/sanctum#api-token-authentication
 
+############################################3 using github, login with , create account
+OAuth2 ---> https://auth0.com/intro-to-iam/what-is-oauth-2
+
+--> in laravel
+    --> socialite?
+    https://laravel.com/docs/11.x/socialite#main-content
+    1- composer require laravel/socialite
 
 
 
