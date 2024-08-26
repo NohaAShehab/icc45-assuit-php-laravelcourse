@@ -396,6 +396,41 @@ the user is authorized to edit/ delete
 00> limit only student creator --> can edit / delete ??
 
 
+1- Authorization
+    prevent update ... ---> owner
+
+    1--------> using gates
+    https://laravel.com/docs/11.x/authorization#writing-gates
+
+
+    once I have created the gate in the app service provider
+    we can use it in different places
+        in blade
+        https://laravel.com/docs/11.x/authorization#via-blade-templates
+
+
+        in controller
+        https://laravel.com/docs/11.x/authorization#authorizing-actions-via-gates
+
+
+===> split gates in another file -==> using Policy ?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

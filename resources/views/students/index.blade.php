@@ -33,8 +33,12 @@
                         <td>{{$student->email}}</td>
                           <td> <img src='{{asset("images/students/".$student->image)}}' width="100" height="100"></td>
                         <td><a href="{{route('students.show', $student->id)}}" class='btn btn-info'> Show </a> </td>
-                    <td> <a href="{{route("students.edit",$student->id)}}" class="btn btn-warning">Edit</a></td>
-{{--                    <td><a href="{{route('students.destroy', $student->id)}}" class="btn btn-danger">Delete</a></td>--}}
+
+                    @can("update-student", $student)
+                        <td> <a href="{{route("students.edit",$student->id)}}" class="btn btn-warning">Edit</a></td>
+                    @else
+                       <td> <h5 class="text-danger"> You are not the owner of the student </h5> </td>
+                    @endcan
                     <td>
                         <form action="{{route('students.destroy', $student)}}"  method="post">
                             @csrf

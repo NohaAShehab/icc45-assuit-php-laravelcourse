@@ -8,6 +8,8 @@ use App\Http\Requests\UpdateStudentRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Gate;
+
 
 class StudentController extends Controller
 {
@@ -86,7 +88,41 @@ class StudentController extends Controller
      */
     public function update(UpdateStudentRequest $request, Student $student)
     {
-        if($student->creator_id == Auth::id()) {
+        # method 1 using if condition
+//        if($student->creator_id == Auth::id()) {
+//
+//            $image_path = $student->image;
+//            $data = request()->all();
+//            if (request()->hasFile("image")) {
+//                $image = request()->file("image");
+//                $image_path = $image->store("images", 'students_images');
+//
+//            }
+//            $data['image'] = $image_path;
+//            $student->update($data);
+//            return to_route('students.show', $student);
+//        }
+//        return to_route('students.index')->with('error', 'You cannot edit this student, you are not the owner');
+    ##########################33 method 2 -
+        # check if gate allow update or not ?
+//        if (! Gate::allows('update-student', $student)) {
+//            abort(403);
+//        }
+
+
+        ############33 method 3 ---> use policy ??
+//        if (! Gate::allows('update', $student)) {
+//            abort(403);
+//        }
+
+        ### method 4 using Policy
+
+//        if($request->user()->cannot('update', $student)){
+//            abort(403);
+//        }
+
+        ### method 5
+         ### add policy to the UpdateStudentRequest
 
             $image_path = $student->image;
             $data = request()->all();
@@ -98,9 +134,11 @@ class StudentController extends Controller
             $data['image'] = $image_path;
             $student->update($data);
             return to_route('students.show', $student);
-        }
-        return to_route('students.index')->with('error', 'You cannot edit this student, you are not the owner');
     }
+
+
+
+
 
     /**
      * Remove the specified resource from storage.
