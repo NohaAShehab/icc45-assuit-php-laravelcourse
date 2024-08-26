@@ -450,6 +450,34 @@ in api.php
       DELETE          api/student/{student} ........ student.destroy › Api\StudentController@destroy
 
 
+define archicture for the response data ?
+
+{
+    data : [] // object , array object
+
+}
+
+
+************* use API resources ?
+https://laravel.com/docs/11.x/eloquent-resources#main-content
+php artisan make:resource StudentResource
+
+# create new resource class for track ?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

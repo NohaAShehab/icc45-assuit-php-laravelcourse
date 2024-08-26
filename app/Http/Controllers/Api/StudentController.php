@@ -8,17 +8,21 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\StoreStudentRequest;
 use Illuminate\Validation\Rule;
+use App\Http\Resources\StudentResource;
 
 
 class StudentController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         //
-        return Student::all();
+//        return Student::all();
+        $students = Student::all();
+        return StudentResource::collection($students);
     }
 
     /**
@@ -28,7 +32,6 @@ class StudentController extends Controller
     {
 
         # validate request before creating object ??
-        # create new validator object ??
         $std_validator  = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required|email|unique:students',
@@ -38,7 +41,7 @@ class StudentController extends Controller
             'name.required'=>'Student name is required.',
             'email.required'=>'Student email is required.',
         ]);
-
+        # create new validator object ??
         if($std_validator->fails()){
 //            return "errors";
             return response()->json([
@@ -46,6 +49,7 @@ class StudentController extends Controller
                 "errors"=> $std_validator->errors()
             ], 400);
         }
+
         $image_path= null;
         if($request->hasFile('image')){
             $image = request()->file("image");
@@ -56,7 +60,8 @@ class StudentController extends Controller
         //
 //        return $request;
         $student = Student::create($request_data);
-        return $student;
+//        return $student;
+        return new StudentResource($student);
     }
 
 
@@ -68,7 +73,8 @@ class StudentController extends Controller
     {
         //
 
-        return $student;
+//        return $student;
+        return new StudentResource($student);
     }
 
     /**
@@ -109,7 +115,8 @@ class StudentController extends Controller
 
         // save object
         $student->update($request_data);
-        return $student;
+//        return $student;
+        return  new StudentResource($student);
     }
 
     /**
