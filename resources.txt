@@ -416,9 +416,22 @@ the user is authorized to edit/ delete
 ===> split gates in another file -==> using Policy ?
 
 
+######################################################3
+******************* APIs
+https://aws.amazon.com/what-is/api/#:~:text=on%20your%20phone.-,What%20does%20API%20stand%20for%3F,of%20service%20between%20two%20applications.
+
+
+----> REST --> https://restfulapi.net/
+What are REST APIs?
+REST stands for Representational State Transfer. REST defines a set of functions like GET, PUT, DELETE, etc.
+that clients can use to access server data.
+Clients and servers exchange data using HTTP.
 
 
 
+### create apis for our students application ??
+to create apis for your project
+Ask artisan to install apis in your project
 
 
 

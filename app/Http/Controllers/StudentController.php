@@ -23,9 +23,10 @@ class StudentController extends Controller
     public function index()
     {
         //
-//        $students  = Student::
+        $students  = Student::
         $students = Student::paginate(3);
         return view('students.index', compact('students'));
+//        return Student::all();
     }
 
     /**
@@ -71,6 +72,7 @@ class StudentController extends Controller
     {
         //
         return view('students.show', compact('student'));
+//        return $student;
     }
 
     /**
