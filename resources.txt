@@ -432,9 +432,22 @@ Clients and servers exchange data using HTTP.
 ### create apis for our students application ??
 to create apis for your project
 Ask artisan to install apis in your project
+ ----> php artisan install:api
+
+https://laravel.com/docs/11.x/routing#api-routes
 
 
+### create our first api --> return with all students ??
 
+php artisan make:controller Api/StudentController -m Student --api
+
+in api.php
+    Route::apiResource("student", StudentController)
+      GET|HEAD        api/student .................... student.index › Api\StudentController@index
+      POST            api/student .................... student.store › Api\StudentController@store
+      GET|HEAD        api/student/{student} .......... student.show › Api\StudentController@show
+      PUT|PATCH       api/student/{student} .......... student.update › Api\StudentController@update
+      DELETE          api/student/{student} ........ student.destroy › Api\StudentController@destroy
 
 
 
