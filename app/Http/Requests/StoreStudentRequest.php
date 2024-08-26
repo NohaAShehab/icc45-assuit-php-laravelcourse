@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 use App\Rules\StudentValidName;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Validator;
 
 class StoreStudentRequest extends FormRequest
 {
@@ -15,6 +16,8 @@ class StoreStudentRequest extends FormRequest
 //        return false;
         return  true;
     }
+
+
 
     /**
      * Get the validation rules that apply to the request.
@@ -31,6 +34,7 @@ class StoreStudentRequest extends FormRequest
         ];
     }
 
+
     public function messages(): array{
         return[
             "name.required" => "There is no student without name",
@@ -40,4 +44,6 @@ class StoreStudentRequest extends FormRequest
             "image.required" => "There is no student without image",
         ];
     }
+
+
 }

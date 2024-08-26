@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\StoreStudentRequest;
+use Illuminate\Validation\Rule;
+
 
 class StudentController extends Controller
 {
@@ -56,6 +59,8 @@ class StudentController extends Controller
         return $student;
     }
 
+
+
     /**
      * Display the specified resource.
      */
@@ -71,7 +76,40 @@ class StudentController extends Controller
      */
     public function update(Request $request, Student $student)
     {
-        //
+
+//        return $request;
+        $std_validator  = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => [
+                "required",
+                "email",
+                Rule::unique('students')->ignore($student),
+            ],
+            'grade'=>'required|numeric',
+            'image'=>'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ],[
+            'name.required'=>'Student name is required.',
+            'email.required'=>'Student email is required.',
+        ]);
+        if($std_validator->fails()){
+//            return "errors";
+            return response()->json([
+                "message"=>"errors with request parameters",
+                "errors"=> $std_validator->errors()
+            ], 400);
+        }
+        // save image
+        $image_path= $student->image;
+        if($request->hasFile('image')){
+            $image = request()->file("image");
+            $image_path=$image->store("images", 'students_images');
+        }
+        $request_data = $request->all();
+        $request_data['image'] = $image_path;
+
+        // save object
+        $student->update($request_data);
+        return $student;
     }
 
     /**
@@ -81,6 +119,7 @@ class StudentController extends Controller
     {
         //
         $student->delete();
-        return "deleted";
+//        return "deleted";
+        return response()->json(null, 204);
     }
 }
